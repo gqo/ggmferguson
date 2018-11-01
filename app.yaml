@@ -1,0 +1,9 @@
+runtime: go
+api_version: go1
+
+handlers:
+
+- url: /.*
+  script: _ggmferguson
+  secure: always
+  redirect_http_response_code: 301

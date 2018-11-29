@@ -21,13 +21,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
-	http.ServeFile(w, r, "./static/main.html")
+	http.ServeFile(w, r, "./web/static/main.html")
 }
 
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "./assets/favicon.ico")
+	http.ServeFile(w, r, "./assets/images/favicon.ico")
 }
 
 func bookHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "./static/books.html")
+	http.ServeFile(w, r, "./web/static/books.html")
 }

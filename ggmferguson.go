@@ -11,6 +11,7 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", fs))
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
+	http.HandleFunc("/books", bookHandler)
 
 	appengine.Main()
 }
@@ -20,9 +21,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
-	http.ServeFile(w, r, "./main.html")
+	http.ServeFile(w, r, "./static/main.html")
 }
 
 func faviconHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "./assets/favicon.ico")
+}
+
+func bookHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "./static/books.html")
 }

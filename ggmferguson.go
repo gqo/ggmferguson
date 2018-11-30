@@ -1,6 +1,8 @@
 package main
 
 import (
+	"html/template"
+	"log"
 	"net/http"
 
 	"google.golang.org/appengine"
@@ -12,6 +14,7 @@ func main() {
 	http.HandleFunc("/", indexHandler)
 	http.HandleFunc("/favicon.ico", faviconHandler)
 	http.HandleFunc("/books", bookHandler)
+	http.HandleFunc("/album", albumHandler)
 
 	appengine.Main()
 }
@@ -30,4 +33,11 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 
 func bookHandler(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "./web/static/books.html")
+}
+
+func albumHandler(w http.ResponseWriter, r *http.Request) {
+	t := template.Must(template.ParseFiles("./web/template/album.html"))
+	Data := getAlbum()
+	log.Println(Data)
+	t.Execute(w, Data)
 }
